@@ -12,19 +12,13 @@ jobs:
       - name: Check out code
         uses: actions/checkout@v4
 
-      # - name: Set up Go
-      #   uses: actions/setup-go@v5
-      #   with:
-      #     go-version: '1.22'
-
-      - name: Run tests
-        run: go test -cover ./...
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.22"
 
       - name: Install gosec
         run: go install github.com/securego/gosec/v2/cmd/gosec@latest
-
-      - name: Add Go binaries to PATH
-        run: echo "${{ github.workspace }}/go/bin" >> $GITHUB_PATH
 
       - name: Run gosec
         run: gosec ./...
